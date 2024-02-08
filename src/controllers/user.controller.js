@@ -3,7 +3,6 @@ import { ApiError } from "../utils/ApiError.js"
 import { User } from "../models/user.model.js"
 import { uploadOnCloudinary } from "../utils/cloudinary.js"
 import { ApiResponse } from "../utils/ApiResponse.js"
-import { json } from "stream/consumers"
 
 
 const generateAccessAndRefreshTokens = async (userId) => {
@@ -101,11 +100,11 @@ const loginUser = asyncHandler(async (req, res) => {
     // username or email
     // find the user
     // password check
-    // access and refresh token
+    // access and referesh token
     // send cookie
 
     const { email, username, password } = req.body
-    console.log(email)
+    console.log(email);
 
     if (!username && !email) {
         throw new ApiError(400, "username or email is required")
@@ -143,7 +142,7 @@ const loginUser = asyncHandler(async (req, res) => {
     return res
         .status(200)
         .cookie("accessToken", accessToken, options)
-        .cookie("refreshToken".refreshToken, options)
+        .cookie("refreshToken", refreshToken, options)
         .json(
             new ApiResponse(
                 200,
